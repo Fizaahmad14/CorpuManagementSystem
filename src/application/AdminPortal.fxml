@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="335.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.adminPortalController">
+   <top>
+      <AnchorPane prefHeight="162.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+         <children>
+            <ImageView fitHeight="143.0" fitWidth="335.0">
+               <image>
+                  <Image url="@../../AdminPortal.jpg" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+   </top>
+   <bottom>
+      <AnchorPane prefHeight="211.0" prefWidth="600.0" style="-fx-background-color: #FFFFFF;" BorderPane.alignment="CENTER">
+         <children>
+            <ImageView fitHeight="83.0" fitWidth="335.0" layoutY="128.0">
+               <image>
+                  <Image url="@../../bottom.png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+   </bottom>
+   <center>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label layoutX="17.0" layoutY="39.0" text="WELCOME&#10;To the Admin Portal" textAlignment="CENTER" wrapText="true">
+               <font>
+                  <Font name="Calibri Bold" size="36.0" />
+               </font>
+            </Label>
+            <Button fx:id="InterestedPeopleButton" layoutX="84.0" layoutY="209.0" mnemonicParsing="false" onAction="#InterestedPeoplePage" prefHeight="49.0" prefWidth="167.0" style="-fx-background-color: #253C96;" text="View List &#10;of Interested People" textAlignment="CENTER" textFill="#fcfcfc">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Button>
+         </children>
+      </AnchorPane>
+   </center>
+</BorderPane>
