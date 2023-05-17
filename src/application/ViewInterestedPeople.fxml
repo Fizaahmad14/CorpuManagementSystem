@@ -57,9 +57,14 @@
                 <TableColumn fx:id="peopleAppliedName" prefWidth="48.0" text="Name" />
                   <TableColumn fx:id="peopleAppliedEmail" prefWidth="51.0" text="Email" />
                   <TableColumn fx:id="peopleAppliedQualification" prefWidth="81.0" text="Qualification" />
-                  <TableColumn fx:id="peopleAppliedAvailability" prefWidth="148.0" text="Availability" />
+                  <TableColumn fx:id="peopleAppliedAvailability" prefWidth="112.0" text="Availability" />
               </columns>
             </TableView>
+            <Button fx:id="GoBackButton" layoutX="242.0" layoutY="-1.0" mnemonicParsing="false" onAction="#goToHome" prefHeight="28.0" prefWidth="79.0" style="-fx-background-color: #131172;" text="Go Back" textAlignment="CENTER" textFill="#fcfcfc">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Button>
          </children>
       </AnchorPane>
    </center>

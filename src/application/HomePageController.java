@@ -16,7 +16,7 @@ public class HomePageController {
     @FXML
     void ApplyPage(ActionEvent event) throws IOException {
     	Main m = new Main();
-    	m.changeScene("ApplicationForm.fxml");
+    	m.changeScene("SelectUnitPage.fxml");
     }
 
     @FXML

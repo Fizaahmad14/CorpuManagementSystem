@@ -11,6 +11,15 @@ public class adminPortalController {
     private Button InterestedPeopleButton;
 
     @FXML
+    private Button LogOutButton;
+
+    @FXML
+    void toHomePage(ActionEvent event) throws IOException {
+    	Main m = new Main();
+    	m.changeScene("HomePage.fxml");
+    }
+
+    @FXML
     void InterestedPeoplePage(ActionEvent event) throws IOException {
     	Main m = new Main();
     	m.changeScene("ViewInterestedPeople.fxml");

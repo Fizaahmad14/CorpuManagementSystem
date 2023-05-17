@@ -28,24 +28,24 @@
                   <Image url="@../../bottom.png" />
                </image>
             </ImageView>
+            <Button fx:id="applyButton" layoutX="79.0" layoutY="-1.0" mnemonicParsing="false" onAction="#ApplyPage" prefHeight="31.0" prefWidth="178.0" style="-fx-background-color: #253C96;" text="Apply for Job" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Button>
          </children>
       </AnchorPane>
    </bottom>
    <center>
       <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="adminButton" layoutX="107.0" layoutY="69.0" mnemonicParsing="false" onAction="#adminLoginPage" prefHeight="31.0" prefWidth="140.0" style="-fx-background-color: #253C96;" text="Login as Admin" textFill="WHITE">
+            <Button fx:id="adminButton" layoutX="80.0" layoutY="67.0" mnemonicParsing="false" onAction="#adminLoginPage" prefHeight="31.0" prefWidth="175.0" style="-fx-background-color: #253C96;" text="Login as Admin" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>
                <padding>
                   <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                </padding>
-            </Button>
-            <Button fx:id="applyButton" layoutX="108.0" layoutY="154.0" mnemonicParsing="false" onAction="#ApplyPage" prefHeight="31.0" prefWidth="140.0" style="-fx-background-color: #253C96;" text="Apply for Job" textFill="WHITE">
-               <font>
-                  <Font name="System Bold" size="15.0" />
-               </font>
             </Button>
          </children>
       </AnchorPane>

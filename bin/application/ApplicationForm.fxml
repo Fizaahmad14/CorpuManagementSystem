@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
@@ -18,6 +19,11 @@
                   <Image url="@../../ApplicationForm.png" />
                </image>
             </ImageView>
+            <Button fx:id="GoBackButton" layoutX="236.0" layoutY="117.0" mnemonicParsing="false" onAction="#gotoHome" prefHeight="31.0" prefWidth="86.0" style="-fx-background-color: #253C96;" text="Go Back" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Button>
          </children>
       </AnchorPane>
    </top>
@@ -29,45 +35,51 @@
                   <Image url="@../../bottom.png" />
                </image>
             </ImageView>
-            <Button fx:id="applyButton" layoutX="98.0" layoutY="56.0" mnemonicParsing="false" onAction="#BackToHome" prefHeight="31.0" prefWidth="140.0" style="-fx-background-color: #253C96;" text="Apply" textFill="WHITE">
+            <Button fx:id="applyButton" layoutX="98.0" layoutY="65.0" mnemonicParsing="false" onAction="#BackToHome" prefHeight="31.0" prefWidth="140.0" style="-fx-background-color: #253C96;" text="Apply" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>
             </Button>
+            <Label layoutX="45.0" layoutY="8.0" text="Please Enter Your Available Time">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
+            <ComboBox fx:id="timeSlot" layoutX="45.0" layoutY="25.0" onAction="#selectTimeSlots" prefHeight="25.0" prefWidth="247.0" promptText="Select Time Slots" />
          </children>
       </AnchorPane>
    </bottom>
    <center>
       <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <Label layoutX="45.0" layoutY="11.0" text="Application Form" textFill="#131172">
+            <Label layoutX="45.0" layoutY="7.0" text="Application Form" textFill="#131172">
                <font>
                   <Font name="System Bold" size="30.0" />
                </font>
             </Label>
-            <Label layoutX="42.0" layoutY="55.0" text="Welcome to CorpU Univeristy" textFill="#85cbda">
+            <Label layoutX="42.0" layoutY="51.0" text="Welcome to CorpU Univeristy" textFill="#85cbda">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
             </Label>
-            <Label layoutX="45.0" layoutY="102.0" text="Please Enter Your Name">
+            <Label layoutX="45.0" layoutY="82.0" text="Please Enter Your Name">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
             </Label>
-            <Label layoutX="45.0" layoutY="159.0" text="Please Enter Email">
+            <Label layoutX="45.0" layoutY="137.0" text="Please Enter Email">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
             </Label>
-            <Label layoutX="45.0" layoutY="214.0" text="Please Enter Qualification">
+            <Label layoutX="45.0" layoutY="187.0" text="Please Enter Qualification">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
             </Label>
-            <TextField fx:id="NameField" layoutX="43.0" layoutY="120.0" prefHeight="25.0" prefWidth="249.0" />
-            <TextField fx:id="EmailField" layoutX="43.0" layoutY="176.0" prefHeight="25.0" prefWidth="249.0" />
-            <TextField fx:id="QualificationField" layoutX="43.0" layoutY="237.0" prefHeight="25.0" prefWidth="249.0" />
+            <TextField fx:id="NameField" layoutX="43.0" layoutY="100.0" prefHeight="25.0" prefWidth="249.0" promptText="Andrew Garfield" />
+            <TextField fx:id="EmailField" layoutX="43.0" layoutY="154.0" prefHeight="25.0" prefWidth="249.0" promptText="andrew@gmail.com" />
+            <TextField fx:id="QualificationField" layoutX="43.0" layoutY="210.0" prefHeight="25.0" prefWidth="249.0" promptText="BSCS/BSSE/MSCS/PhD" />
          </children>
       </AnchorPane>
    </center>
