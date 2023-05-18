@@ -1,11 +1,17 @@
 package application;
 
 import java.io.IOException;
+
+import BusniessLogic.Controller;
+import DataBase.DbHandler;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
 public class SelectUnitPageController {
+	Controller contr = new Controller();
+	DbHandler db = new DbHandler();
+	
 	@FXML
     private Button GoBackButton;
 
@@ -21,7 +27,7 @@ public class SelectUnitPageController {
     @FXML
     public void initialize() {
     	unit.getItems().addAll("DLD", "AI", "CyberSecurity", "Algo","PDC", "Nummerical");
-    	preference.getItems().addAll("Calculus", "Linear Algebra", "DLD", "AI", "CyberSecurity", "Algo", "SE", "PDC", "Nummerical");
+    	preference.getItems().addAll("BSCS", "BSSE", "BSEE", "MSCS", "MSEE", "BSAI", "BSCYS", "MSCYS", "PhD");
     }
 
     @FXML

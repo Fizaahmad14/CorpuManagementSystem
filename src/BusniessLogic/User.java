@@ -7,24 +7,34 @@ public class User {
 	private int id;
     private String name;
     private String email;
-    private String phone;
     private String pass;
-    private List<Qualification> qualifications;
-    private List<Availability> availablilityList;
+    private String qualifications;
+    private String availablilityList;
 		
 
-    public User(int id, String name, String email,String pass, String phone) {
+    public User(int id, String name, String email,String pass, String qualString,String avail) {
     	this.id = id;
         this.name = name;
         this.email = email;
         this.pass = pass;
-        this.phone = phone;
-        this.qualifications = new ArrayList<>();
+//        this.phone = phone;
+        this.qualifications=qualString;
+        this.availablilityList=avail;
     }
 
     // Getters and setters for the fields
 
-    public int getId() {
+    public User() {
+    	this.id = 0;
+        this.name = null;
+        this.email = null;
+        this.pass = null;
+//        this.phone = phone;
+        this.qualifications=null;
+        this.availablilityList=null;
+	}
+
+	public int getId() {
 		return id;
 	}
 
@@ -48,36 +58,14 @@ public class User {
         this.email = email;
     }
 
-    public String getPhone() {
-        return phone;
-    }
+//    public String getPhone() {
+//        return phone;
+//    }
+//
+//    public void setPhone(String phone) {
+//        this.phone = phone;
+//    }
 
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
-
-    public List<Qualification> getQualifications() {
-        return qualifications;
-    }
-
-    public void setQualifications(List<Qualification> qualifications) {
-        this.qualifications = qualifications;
-    }
-
-	public List<Availability> getAvailablilityList() {
-		return availablilityList;
-	}
-
-	public void setAvailablilityList(List<Availability> availablilityList) {
-		this.availablilityList = availablilityList;
-	}
-
-	@Override
-	public String toString() {
-		return "User [id=" + id + ", name=" + name + ", email=" + email + ", phone=" + phone + ", qualifications="
-				+ qualifications + ", availablilityList=" + availablilityList
-				+ "]";
-	}
 
 	public String getPass() {
 		return pass;
@@ -86,5 +74,28 @@ public class User {
 	public void setPass(String pass) {
 		this.pass = pass;
 	}
+
+	public String getQualifications() {
+		return qualifications;
+	}
+
+	public void setQualifications(String qualifications) {
+		this.qualifications = qualifications;
+	}
+
+	public String getAvailablilityList() {
+		return availablilityList;
+	}
+
+	public void setAvailablilityList(String availablilityList) {
+		this.availablilityList = availablilityList;
+	}
+
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", name=" + name + ", email=" + email + ", pass=" + pass + ", qualifications="
+				+ qualifications + ", availablilityList=" + availablilityList + "]";
+	}
+	
 }
 

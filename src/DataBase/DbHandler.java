@@ -1,7 +1,11 @@
 package DataBase;
 import java.sql.*;
 import java.util.ArrayList;
+
+import BusniessLogic.InterestedPeopl;
 import BusniessLogic.PermanentStaff;
+import BusniessLogic.SessionalStaff;
+import BusniessLogic.User;
 import BusniessLogic.psAccount;
 
 public class DbHandler {
@@ -44,4 +48,27 @@ public class DbHandler {
 		}
 		return acc;
 	}
+	
+	//---------------------------------------------Application Form
+	public void writeInterestedData(InterestedPeopl rest) {
+	    try {
+	        String query = "INSERT INTO Interested (name, email, qualification, timeslot, unit, preference) VALUES (?, ?, ?, ?, ?, ?)";
+	        PreparedStatement stm = con.prepareStatement(query);
+
+	        stm.setString(1, rest.getName());
+	        stm.setString(2, rest.getEmail());
+	        stm.setString(3, rest.getQualifications());
+	        stm.setString(4, rest.getAvailablilityList());
+	        stm.setString(5, rest.getUnit().getName());
+	        stm.setString(6, rest.getPreference());
+
+	        stm.executeUpdate();
+	        System.out.println("Interested Person Successfully inserted");
+	    } catch (SQLException e) {
+	        System.out.println("Error in Interested Person insertion");
+	        e.printStackTrace();
+	    }
+	}
+	
+	
 }

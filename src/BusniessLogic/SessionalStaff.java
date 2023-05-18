@@ -8,7 +8,7 @@ public class SessionalStaff extends User {
     private List<Unit> preferencesList;
 
     public SessionalStaff(int id, String name, String email,String pass, String phone) {
-        super(id, name, email, pass, phone);
+        super(id, name, email, pass, phone, phone);
         this.engagedUnits = new ArrayList<>();
     }
 

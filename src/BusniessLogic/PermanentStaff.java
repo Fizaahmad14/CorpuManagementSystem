@@ -7,7 +7,7 @@ public class PermanentStaff extends User {
     private List<Unit> managedUnits;
 
     public PermanentStaff(int id, String name,String pass, String email, String phone) {
-        super(id, name, email,pass, phone);
+        super(id, name, email,pass, phone, phone);
         this.managedUnits = new ArrayList<>();
     }
 

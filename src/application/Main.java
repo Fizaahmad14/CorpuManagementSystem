@@ -1,9 +1,12 @@
-package application;	
+package application;
+	
 import java.io.IOException;
+
 import javafx.application.Application;
 import javafx.stage.Stage;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.fxml.FXMLLoader;
 
@@ -13,7 +16,6 @@ public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		try {
-			System.out.println("hello1\n");
 			stg = primaryStage; //added
 			BorderPane root = (BorderPane)FXMLLoader.load(getClass().getResource("HomePage.fxml"));
 			Scene scene = new Scene(root,340,600);
@@ -26,7 +28,6 @@ public class Main extends Application {
 	}
 	
 	public static void main(String[] args) {
-		System.out.println("hello1\n");
 		launch(args);
 	}
 	
