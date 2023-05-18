@@ -7,17 +7,14 @@ public class User {
 	private int id;
     private String name;
     private String email;
-    private String pass;
     private String qualifications;
     private String availablilityList;
 		
 
-    public User(int id, String name, String email,String pass, String qualString,String avail) {
+    public User(int id, String name, String email,String qualString,String avail) {
     	this.id = id;
         this.name = name;
         this.email = email;
-        this.pass = pass;
-//        this.phone = phone;
         this.qualifications=qualString;
         this.availablilityList=avail;
     }
@@ -28,8 +25,6 @@ public class User {
     	this.id = 0;
         this.name = null;
         this.email = null;
-        this.pass = null;
-//        this.phone = phone;
         this.qualifications=null;
         this.availablilityList=null;
 	}
@@ -58,23 +53,6 @@ public class User {
         this.email = email;
     }
 
-//    public String getPhone() {
-//        return phone;
-//    }
-//
-//    public void setPhone(String phone) {
-//        this.phone = phone;
-//    }
-
-
-	public String getPass() {
-		return pass;
-	}
-
-	public void setPass(String pass) {
-		this.pass = pass;
-	}
-
 	public String getQualifications() {
 		return qualifications;
 	}
@@ -93,7 +71,7 @@ public class User {
 
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", name=" + name + ", email=" + email + ", pass=" + pass + ", qualifications="
+		return "User [id=" + id + ", name=" + name + ", email=" + email + ", qualifications="
 				+ qualifications + ", availablilityList=" + availablilityList + "]";
 	}
 	

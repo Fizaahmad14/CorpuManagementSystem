@@ -19,7 +19,7 @@ public class adminLoginController {
     private TextField adminEmail;
 
     @FXML
-    private TextField adminPassword;
+    private PasswordField adminPassword;
 
     @FXML
     private Label invalidDetails;

@@ -1,23 +1,22 @@
 package BusniessLogic;
 
 public class InterestedPeopl extends User{
-	private Unit unit;
+	private Unit unit = new Unit();
 	private String preference;
 
-	public InterestedPeopl(int id, String name, String email, String pass, String qualString, String avail, Unit u, String p) {
-		super(id, name, email, pass, qualString, avail);
+	public InterestedPeopl(int id, String name, String email,String qualString, String avail, String u, String p) {
+		super(id, name, email,qualString, avail);
 		// TODO Auto-generated constructor stub
-		this.unit=u;
+		this.unit.setName(u);
 		this.preference=p;
 	}
 
 	public InterestedPeopl() {
 		// TODO Auto-generated constructor stub
 		super();
-		this.unit=null;
+		this.unit= new Unit();
 		this.preference=null;
 	}
-
 	public Unit getUnit() {
 		return unit;
 	}

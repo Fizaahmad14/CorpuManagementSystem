@@ -11,7 +11,13 @@ public class Unit {
 
     // Getters and setters for the fields
 
-    public int getId() {
+    public Unit() {
+		// TODO Auto-generated constructor stub
+    	this.id = 0;
+        this.name = null;
+	}
+
+	public int getId() {
         return id;
     }
 
