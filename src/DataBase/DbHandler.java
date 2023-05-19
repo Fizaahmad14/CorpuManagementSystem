@@ -228,14 +228,15 @@ public class DbHandler {
 		//--------------------------------------------CURRENT ADMIN
 		public int readCurrentAdmin() 
 		{
-			int id = 0;
+			ArrayList<Integer> acc = new ArrayList<Integer>();
 			Statement stm;
 			try {
 				stm = con.createStatement();
 				String query = "SELECT ps_id FROM CurrentAdmin";
 				ResultSet rs = stm.executeQuery(query);
 				while(rs.next()) {
-				id = rs.getInt(1);
+					int id = rs.getInt(1);
+					acc.add(id);
 				}
 			}
 			catch (SQLException e) 
@@ -243,7 +244,7 @@ public class DbHandler {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			return id;
+			return acc.get(acc.size()-1);
 		}
 		
 		//---------------------------------------------LOGOUT
@@ -276,6 +277,25 @@ public class DbHandler {
 		        e.printStackTrace();
 		    }
 		    return acc;
+		}
+		public String readAdminName(int id) {
+			ArrayList<String> acc = new ArrayList<String>();
+			try {
+				String query = "SELECT name FROM PermanentStaff WHERE id = ?";
+				PreparedStatement stm = con.prepareStatement(query);
+		        stm.setInt(1, id);
+		        ResultSet rs = stm.executeQuery();
+				while(rs.next()) {
+					String name = rs.getString(1);
+					acc.add(name);
+				}
+			}
+			catch (SQLException e) 
+			{
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return acc.get(acc.size()-1);
 		}
 		
 		

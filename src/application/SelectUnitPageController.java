@@ -6,9 +6,19 @@ import java.util.ArrayList;
 import BusniessLogic.PermanentStaff;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.stage.Stage;
 
 public class SelectUnitPageController {
+	
+	private String selectedUnit;
+	
+	private String selectedPreference;
+	
+	
 	PermanentStaff ps = new PermanentStaff();
 	
 	@FXML
@@ -40,19 +50,30 @@ public class SelectUnitPageController {
     //this is the next button
     @FXML
     void toApplicationForm(ActionEvent event) throws IOException {
-    	Main m = new Main();
-    	m.changeScene("ApplicationForm.fxml");
+    	
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("ApplicationForm.fxml"));
+        Parent root = loader.load();
+        
+        applicationFormController controller = loader.getController();
+        controller.setUnitAndPreference(selectedUnit, selectedPreference);
+        
+        Scene scene = new Scene(root);
+        Stage stage = (Stage) nextButton.getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
+//    	Main m = new Main();
+//    	m.changeScene("ApplicationForm.fxml");
     }
     
     @FXML
     void handlePreference(ActionEvent event) {
-    	String selectedPreference = preference.getValue();
+    	this.selectedPreference = preference.getValue();
     	System.out.println("User Selected Preference: "+selectedPreference);
     }
 
     @FXML
     void handleUnits(ActionEvent event) {
-    	String selectedUnit = unit.getValue();
+    	this.selectedUnit = unit.getValue();
     	System.out.println("User Selected Unit: "+selectedUnit);
     }
 }

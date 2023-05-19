@@ -1,5 +1,6 @@
 package application;
 import DataBase.DbHandler;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import BusniessLogic.PermanentStaff;
@@ -8,7 +9,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
-public class adminLoginController {
+public class adminLoginController{
 	
 	PermanentStaff ps = new PermanentStaff();
 	DbHandler db = new DbHandler();
@@ -27,16 +28,16 @@ public class adminLoginController {
 
     @FXML
     void AdminPortal(ActionEvent event) throws IOException {
-    	ArrayList<psAccount> ps = new ArrayList<psAccount>();
-        ps = db.readAdminAccounts();
+    	ArrayList<psAccount> psList = new ArrayList<psAccount>();
+    	psList = db.readAdminAccounts();
 		Boolean checkUsername = false;
-    	for(int i=0; i<ps.size(); i++)
+    	for(int i=0; i<psList.size(); i++)
     		{
     			
-				if(ps.get(i).getEmail().equals(adminEmail.getText()) && ps.get(i).getPass().equals(adminPassword.getText()))
+				if(psList.get(i).getEmail().equals(adminEmail.getText()) && psList.get(i).getPass().equals(adminPassword.getText()))
 				{
 					checkUsername = true;
-					int id = ps.get(i).getId();
+					int id = psList.get(i).getId();
 					db.saveCurrentAdmin(id);
 				}
     		}

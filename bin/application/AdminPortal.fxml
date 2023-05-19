@@ -39,7 +39,7 @@
    <center>
       <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <Label layoutX="90.0" layoutY="75.0" text="WELCOME&#10;" textAlignment="CENTER" textFill="#1f0f65" wrapText="true">
+            <Label layoutX="90.0" layoutY="44.0" text="WELCOME&#10;" textAlignment="CENTER" textFill="#1f0f65" wrapText="true">
                <font>
                   <Font name="Calibri Bold" size="36.0" />
                </font>
@@ -49,9 +49,14 @@
                   <Font name="System Bold" size="15.0" />
                </font>
             </Button>
-            <Label layoutX="58.0" layoutY="116.0" text="To Permanent Staff Portal" textFill="#85cbda">
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="81.0" layoutY="116.0" text="Permanent Staff Portal" textFill="#85cbda">
                <font>
-                  <Font name="System Bold" size="18.0" />
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Label>
+            <Label fx:id="name" alignment="CENTER" contentDisplay="CENTER" layoutX="95.0" layoutY="79.0" prefHeight="17.0" prefWidth="149.0" textAlignment="CENTER" textOverrun="CLIP">
+               <font>
+                  <Font name="System Bold Italic" size="20.0" />
                </font>
             </Label>
          </children>

@@ -54,10 +54,21 @@ public class PermanentStaff extends User {
     	return availabilityList;
     }
     
+    public void saveAdmin(int id)
+    {
+    	db.saveCurrentAdmin(id);
+    }
+    
     public int currentAdmin()
     {
     	int id = db.readCurrentAdmin();
     	return id;
+    }
+    
+    public String currentAdminName()
+    {
+    	String name = db.readAdminName(db.readCurrentAdmin());
+    	return name;
     }
     
     public String currentUnit()

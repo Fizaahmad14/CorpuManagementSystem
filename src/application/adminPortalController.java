@@ -1,14 +1,22 @@
 package application;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
 import BusniessLogic.PermanentStaff;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 
-public class adminPortalController {
-	PermanentStaff ps = new PermanentStaff(); 
+public class adminPortalController implements Initializable{
+	PermanentStaff ps = new PermanentStaff();
+	
+	 @FXML
+	 private Label name;
+	
 	@FXML
     private Button InterestedPeopleButton;
 
@@ -27,4 +35,9 @@ public class adminPortalController {
     	Main m = new Main();
     	m.changeScene("ViewInterestedPeople.fxml");
     }
+	@Override
+	public void initialize(URL arg0, ResourceBundle arg1) {
+		name.setText(ps.currentAdminName());
+		
+	}
 }

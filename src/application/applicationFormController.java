@@ -5,17 +5,17 @@ import java.util.ArrayList;
 
 import BusniessLogic.InterestedPeopl;
 import BusniessLogic.PermanentStaff;
+import BusniessLogic.Unit;
 import DataBase.DbHandler;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
 public class applicationFormController {
+	
 	PermanentStaff ps = new PermanentStaff(); 
     InterestedPeopl intr = new InterestedPeopl();
 	DbHandler db = new DbHandler();
-	//SelectUnitPageController supc = new SelectUnitPageController();
-	
 	
     @FXML
     private Button GoBackButton;
@@ -69,6 +69,12 @@ public class applicationFormController {
     	String selectedTime = timeSlot.getValue();
     	intr.setAvailablilityList(selectedTime);
     	System.out.println("User Selected TimeSlot: "+selectedTime);
+    }
+    
+    public void setUnitAndPreference(String unit, String preference) {
+    	Unit unitObj = new Unit(unit);
+        intr.setPreference(preference);
+        intr.setUnit(unitObj);
     }
 
 }

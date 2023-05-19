@@ -15,6 +15,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 public class viewInterestedPeopleController implements Initializable{
+	
 	PermanentStaff ps = new PermanentStaff();
 	
 	private String selectedPreference = null;
@@ -84,8 +85,6 @@ public class viewInterestedPeopleController implements Initializable{
     	this.selectedPreference = search.getValue();
     	System.out.println("Admin Selected Preference: "+selectedPreference);
     	updateTable();
-//    	Main m = new Main();
-//		m.changeScene("ViewInterestedPeople.fxml");
     }
     
     public void updateTable()
@@ -127,32 +126,6 @@ public class viewInterestedPeopleController implements Initializable{
     	String unitName = ps.currentUnit();
     	unit_name.setText(unitName); 
     	updateTable();
-    	//int id = ps.currentAdmin();
-//    	ArrayList<InterestedPeopl> attList = null;
-//    	
-//    	if(selectedPreference == null)
-//    	{
-//    		attList = ps.loadUsersApplied(id);
-//    	}
-//    	else
-//    	{
-//    		attList = ps.showSpecificPreference(id,this.selectedPreference);
-//    	}
-//   	
-//		ObservableList<InterestedPeopl> data = FXCollections.observableArrayList(attList);
-//		
-//		peopleAppliedID.setCellValueFactory(new PropertyValueFactory<InterestedPeopl,String>("id"));
-//		
-//		peopleAppliedName.setCellValueFactory(new PropertyValueFactory<InterestedPeopl,String>("name"));
-//		
-//		peopleAppliedEmail.setCellValueFactory(new PropertyValueFactory<InterestedPeopl,String>("email"));
-//
-//		peopleAppliedQualification.setCellValueFactory(new PropertyValueFactory<InterestedPeopl,String>("qualifications"));
-//		
-//		peopleAppliedAvailability.setCellValueFactory(new PropertyValueFactory<InterestedPeopl,String>("availablilityList"));
-//		
-//		table.setItems(data);
-
 	}
 
 	public String getSelectedPreference() {
