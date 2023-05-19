@@ -1,17 +1,17 @@
 package application;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
+import BusniessLogic.Availability;
+import BusniessLogic.Controller;
 import BusniessLogic.InterestedPeopl;
-import BusniessLogic.PermanentStaff;
+import BusniessLogic.SessionalStaff;
 import DataBase.DbHandler;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
 public class applicationFormController {
-	PermanentStaff ps = new PermanentStaff(); 
     InterestedPeopl intr = new InterestedPeopl();
 	DbHandler db = new DbHandler();
 	//SelectUnitPageController supc = new SelectUnitPageController();
@@ -25,9 +25,6 @@ public class applicationFormController {
 
     @FXML
     private TextField NameField;
-    
-    @FXML
-    private TextField phone;
 
     @FXML
     private TextField QualificationField;
@@ -40,18 +37,27 @@ public class applicationFormController {
     
     @FXML
     public void initialize() {
-    	
-    	ArrayList<String> availablilityList = ps.loadAvailabilities();
-    	timeSlot.getItems().addAll(availablilityList);
+    	timeSlot.getItems().addAll(
+            "Monday (10:00AM - 5:00PM)",
+            "Tuesday (10:00AM - 5:00PM)",
+            "Wednesday (10:00AM - 5:00PM)",
+            "Thursday (10:00AM - 5:00PM)",
+            "Friday (10:00AM - 5:00PM)",
+            "Saturday (10:00AM - 5:00PM)",
+            "Sunday (10:00AM - 5:00PM)",
+            "Monday (6:00PM - 11:00PM)",
+            "Tuesday (6:00PM - 11:00PM)",
+            "Wednesday (6:00PM - 11:00PM)"
+        );
     }
 
     //This is the apply button go back to home where a prmompt will be shown to user saying that your application has been successfully submitted
     @FXML
-    void apply(ActionEvent event) throws IOException {
+    void BackToHome(ActionEvent event) throws IOException {
     	intr.setName(NameField.getText());
     	intr.setEmail(EmailField.getText());
-    	intr.setPhone(phone.getText());
     	intr.setQualifications(QualificationField.getText());
+//    	intr.setAvailablilityList(null);
     	db.writeInterestedData(intr);
     	Main m = new Main();
     	m.changeScene("HomePage.fxml");

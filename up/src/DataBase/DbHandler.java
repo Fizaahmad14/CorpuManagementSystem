@@ -1,8 +1,11 @@
 package DataBase;
 import java.sql.*;
 import java.util.ArrayList;
+
 import BusniessLogic.InterestedPeopl;
+import BusniessLogic.PermanentStaff;
 import BusniessLogic.SessionalStaff;
+import BusniessLogic.User;
 import BusniessLogic.psAccount;
 
 public class DbHandler {
@@ -31,7 +34,7 @@ public class DbHandler {
 		try {
 			stm = con.createStatement();
 
-			String query = "SELECT * FROM ps_account";
+			String query = "SELECT * FROM Admin_account";
 			ResultSet rs = stm.executeQuery(query);
 			while (rs.next()) {
 				psAccount s = new psAccount(rs.getString(2), rs.getString(3));
@@ -45,79 +48,6 @@ public class DbHandler {
 		}
 		return acc;
 	}
-	
-	//----------------------------------------------LOAD UNITS
-		public ArrayList<String> readUnits() 
-		{
-
-			ArrayList<String> acc = new ArrayList<String>();
-			Statement stm;
-			try {
-				stm = con.createStatement();
-
-				String query = "SELECT name FROM Unit";
-				ResultSet rs = stm.executeQuery(query);
-				while (rs.next()) {
-					String s = rs.getString(1);
-					acc.add(s);
-				}
-			}
-			catch (SQLException e) 
-			{
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			return acc;
-		}
-		
-		//----------------------------------------------LOAD AVAILABILITIES
-		public ArrayList<String> readAvailabilities() 
-		{
-
-			ArrayList<String> acc = new ArrayList<String>();
-			Statement stm;
-			try {
-				stm = con.createStatement();
-
-				String query = "SELECT timeSlots FROM Availability";
-				ResultSet rs = stm.executeQuery(query);
-				while (rs.next()) {
-					String s = rs.getString(1);
-					acc.add(s);
-				}
-			}
-			catch (SQLException e) 
-			{
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			return acc;
-		}
-		
-		
-		//----------------------------------------------LOAD PREFERENCES
-			public ArrayList<String> readPreferences() 
-			{
-
-				ArrayList<String> acc = new ArrayList<String>();
-				Statement stm;
-				try {
-					stm = con.createStatement();
-
-					String query = "SELECT name FROM preferences";
-					ResultSet rs = stm.executeQuery(query);
-					while (rs.next()) {
-						String s = rs.getString(1);
-						acc.add(s);
-					}
-				}
-				catch (SQLException e) 
-				{
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				return acc;
-			}
 	
 	//---------------------------------------------Application Form
 	public void writeInterestedData(InterestedPeopl rest) {
@@ -150,7 +80,7 @@ public class DbHandler {
 			String query = "SELECT * FROM Interested";
 			ResultSet rs = stm.executeQuery(query);
 			while (rs.next()) {
-				InterestedPeopl s = new InterestedPeopl(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8));
+				InterestedPeopl s = new InterestedPeopl(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7));
 				acc.add(s);
 			}
 		}

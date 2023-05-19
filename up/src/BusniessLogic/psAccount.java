@@ -1,5 +1,8 @@
 package BusniessLogic;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class psAccount {
 	private String email;
 	private String pass;

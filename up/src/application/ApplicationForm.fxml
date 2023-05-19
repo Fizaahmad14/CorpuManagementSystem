@@ -19,9 +19,9 @@
                   <Image url="@../../ApplicationForm.png" />
                </image>
             </ImageView>
-            <Button fx:id="GoBackButton" layoutX="242.0" layoutY="71.0" mnemonicParsing="false" onAction="#gotoHome" prefHeight="24.0" prefWidth="59.0" style="-fx-background-color: #253C96;" text="&lt;&lt;back" textFill="WHITE">
+            <Button fx:id="GoBackButton" layoutX="236.0" layoutY="117.0" mnemonicParsing="false" onAction="#gotoHome" prefHeight="31.0" prefWidth="86.0" style="-fx-background-color: #253C96;" text="Go Back" textFill="WHITE">
                <font>
-                  <Font name="System Bold" size="11.0" />
+                  <Font name="System Bold" size="15.0" />
                </font>
             </Button>
          </children>
@@ -35,57 +35,51 @@
                   <Image url="@../../bottom.png" />
                </image>
             </ImageView>
-            <Button fx:id="applyButton" layoutX="98.0" layoutY="146.0" mnemonicParsing="false" onAction="#apply" prefHeight="31.0" prefWidth="140.0" style="-fx-background-color: #ffffff;" text="Apply" textFill="#131172">
+            <Button fx:id="applyButton" layoutX="98.0" layoutY="65.0" mnemonicParsing="false" onAction="#BackToHome" prefHeight="31.0" prefWidth="140.0" style="-fx-background-color: #253C96;" text="Apply" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>
             </Button>
-            <Label layoutX="45.0" layoutY="53.0" text="Please Enter Your Available Time">
+            <Label layoutX="45.0" layoutY="8.0" text="Please Enter Your Available Time">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
             </Label>
-            <ComboBox fx:id="timeSlot" layoutX="45.0" layoutY="70.0" onAction="#selectTimeSlots" prefHeight="25.0" prefWidth="247.0" promptText="Select Time Slots" />
+            <ComboBox fx:id="timeSlot" layoutX="45.0" layoutY="25.0" onAction="#selectTimeSlots" prefHeight="25.0" prefWidth="247.0" promptText="Select Time Slots" />
          </children>
       </AnchorPane>
    </bottom>
    <center>
       <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <Label layoutX="45.0" layoutY="33.0" text="Application Form" textFill="#131172">
+            <Label layoutX="45.0" layoutY="7.0" text="Application Form" textFill="#131172">
                <font>
                   <Font name="System Bold" size="30.0" />
                </font>
             </Label>
-            <Label layoutX="42.0" layoutY="77.0" text="Welcome to CorpU Univeristy" textFill="#85cbda">
+            <Label layoutX="42.0" layoutY="51.0" text="Welcome to CorpU Univeristy" textFill="#85cbda">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
             </Label>
-            <Label layoutX="45.0" layoutY="108.0" text="Please Enter Your Name">
+            <Label layoutX="45.0" layoutY="82.0" text="Please Enter Your Name">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
             </Label>
-            <Label layoutX="45.0" layoutY="163.0" text="Please Enter Email">
+            <Label layoutX="45.0" layoutY="137.0" text="Please Enter Email">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
             </Label>
-            <Label layoutX="45.0" layoutY="269.0" text="Please Enter Qualification">
+            <Label layoutX="45.0" layoutY="187.0" text="Please Enter Qualification">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
             </Label>
-            <TextField fx:id="NameField" layoutX="43.0" layoutY="126.0" prefHeight="25.0" prefWidth="249.0" promptText="Andrew Garfield" />
-            <TextField fx:id="EmailField" layoutX="43.0" layoutY="180.0" prefHeight="25.0" prefWidth="249.0" promptText="andrew@gmail.com" />
-            <TextField fx:id="QualificationField" layoutX="43.0" layoutY="292.0" prefHeight="25.0" prefWidth="249.0" promptText="BSCS/BSSE/MSCS/PhD" />
-            <Label layoutX="45.0" layoutY="218.0" text="Please Enter phone">
-               <font>
-                  <Font name="System Bold" size="12.0" />
-               </font>
-            </Label>
-            <TextField fx:id="phone" layoutX="43.0" layoutY="235.0" prefHeight="25.0" prefWidth="249.0" promptText="11122212" />
+            <TextField fx:id="NameField" layoutX="43.0" layoutY="100.0" prefHeight="25.0" prefWidth="249.0" promptText="Andrew Garfield" />
+            <TextField fx:id="EmailField" layoutX="43.0" layoutY="154.0" prefHeight="25.0" prefWidth="249.0" promptText="andrew@gmail.com" />
+            <TextField fx:id="QualificationField" layoutX="43.0" layoutY="210.0" prefHeight="25.0" prefWidth="249.0" promptText="BSCS/BSSE/MSCS/PhD" />
          </children>
       </AnchorPane>
    </center>

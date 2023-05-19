@@ -1,8 +1,9 @@
 package application;
 import DataBase.DbHandler;
+
 import java.io.IOException;
 import java.util.ArrayList;
-import BusniessLogic.PermanentStaff;
+import BusniessLogic.Controller;
 import BusniessLogic.psAccount;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -11,7 +12,7 @@ import javafx.scene.control.*;
 public class adminLoginController {
 	
 	
-	PermanentStaff ps = new PermanentStaff();
+	Controller contr = new Controller();
 	DbHandler db = new DbHandler();
 	
 	@FXML

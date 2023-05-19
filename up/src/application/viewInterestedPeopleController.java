@@ -65,8 +65,7 @@ public class viewInterestedPeopleController implements Initializable{
     }
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
-		
-    	ArrayList<InterestedPeopl> attList = ps.loadUsersApplied();
+		ArrayList<InterestedPeopl> attList = ps.loadUsersApplied();
     	
 		ObservableList<InterestedPeopl> data = FXCollections.observableArrayList(attList);
 		

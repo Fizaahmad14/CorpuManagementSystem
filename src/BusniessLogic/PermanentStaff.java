@@ -7,52 +7,18 @@ import DataBase.DbHandler;
 
 public class PermanentStaff extends User {
 	DbHandler db = new DbHandler();
-    public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	public String getPhone() {
-		return phone;
-	}
-
-	public void setPhone(String phone) {
-		this.phone = phone;
-	}
-
+	
 	private List<Unit> managedUnits;
-    private int id;
-    private String name;
-    private String email;
-    private String pass;
-    private String phone;
-    public PermanentStaff(int id, String name,String email, String pass,String phone) {
-        this.managedUnits = new ArrayList<>();
-    }
+	
+    public PermanentStaff(int id, String name, String email, String phone, String qualString, String avail, String u, String p) {
+		super(id, name, email,phone,qualString, avail,u,p);
+
+	}
 
     public PermanentStaff() {
     	super();
-		// TODO Auto-generated constructor stub
 	}
+    
 
 	public List<Unit> getManagedUnits() {
         return managedUnits;
@@ -70,11 +36,29 @@ public class PermanentStaff extends User {
         managedUnits.remove(unit);
     }
 
+    public ArrayList<String> loadUnits()
+    {
+    	ArrayList<String> unitNamesList = db.readUnits();
+    	return unitNamesList;
+    }
+    
+    public ArrayList<String> loadPreferences()
+    {
+    	ArrayList<String> preferenceNamesList = db.readPreferences();
+    	return preferenceNamesList;
+    }
+    
+    public ArrayList<String> loadAvailabilities()
+    {
+    	ArrayList<String> availabilityList = db.readAvailabilities();
+    	return availabilityList;
+    }
+    
 	public void hireSessionalStaff(InterestedPeopl att) {
 		
 		// TODO Auto-generated method stub
-		id = att.getId();
-		SessionalStaff ss = new SessionalStaff(att.getId(),att.getName(),att.getEmail(),att.getQualifications(),att.getAvailablilityList(),att.getUnit().getName(),att.getPreference()); 
+		int id = att.getId();
+		SessionalStaff ss = new SessionalStaff(att.getId(),att.getName(),att.getEmail(),att.getPhone(),att.getQualifications(),att.getAvailablilityList(),att.getUnit().getName(),att.getPreference()); 
 		db.writeSessionalData(ss);
 		db.deleteInterested(id);	
 	}
@@ -83,12 +67,5 @@ public class PermanentStaff extends User {
 		ArrayList<InterestedPeopl> pplList = db.readUsersApplied();
 		return pplList;
 	}
-	
-	public String getPass() {
-		return pass;
-	}
 
-	public void setPass(String pass) {
-		this.pass = pass;
-	}
 }
