@@ -54,6 +54,17 @@ public class PermanentStaff extends User {
     	return availabilityList;
     }
     
+    public int currentAdmin()
+    {
+    	int id = db.readCurrentAdmin();
+    	return id;
+    }
+    
+    public void logout(int id)
+    {
+    	db.logout(id);
+    }
+    
 	public void hireSessionalStaff(InterestedPeopl att) {
 		
 		// TODO Auto-generated method stub
@@ -63,8 +74,8 @@ public class PermanentStaff extends User {
 		db.deleteInterested(id);	
 	}
 
-	public ArrayList<InterestedPeopl> loadUsersApplied(){
-		ArrayList<InterestedPeopl> pplList = db.readUsersApplied();
+	public ArrayList<InterestedPeopl> loadUsersApplied(int id){
+		ArrayList<InterestedPeopl> pplList = db.readUsersApplied(id);
 		return pplList;
 	}
 

@@ -34,7 +34,7 @@ public class DbHandler {
 			String query = "SELECT * FROM ps_account";
 			ResultSet rs = stm.executeQuery(query);
 			while (rs.next()) {
-				psAccount s = new psAccount(rs.getString(2), rs.getString(3));
+				psAccount s = new psAccount(rs.getInt(1),rs.getString(2), rs.getString(3));
 				acc.add(s);
 			}
 		}
@@ -139,28 +139,23 @@ public class DbHandler {
 	        e.printStackTrace();
 	    }
 	}
-	public ArrayList<InterestedPeopl> readUsersApplied() 
-	{
+	public ArrayList<InterestedPeopl> readUsersApplied(int id) {
+	    ArrayList<InterestedPeopl> acc = new ArrayList<InterestedPeopl>();
+	    try {
+	        String query = "SELECT i.* FROM Interested i JOIN PermanentStaff p ON i.unitName = p.unitName WHERE p.id = ?";
+	        PreparedStatement stm = con.prepareStatement(query);
+	        stm.setInt(1, id);
+	        ResultSet rs = stm.executeQuery();
+	        while (rs.next()) {
+	            InterestedPeopl s = new InterestedPeopl(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8));
+	            acc.add(s);
+	        }
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
+	    return acc;
+	}
 
-		ArrayList<InterestedPeopl> acc = new ArrayList<InterestedPeopl>();
-		Statement stm;
-		try {
-			stm = con.createStatement();
-
-			String query = "SELECT * FROM Interested";
-			ResultSet rs = stm.executeQuery(query);
-			while (rs.next()) {
-				InterestedPeopl s = new InterestedPeopl(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8));
-				acc.add(s);
-			}
-		}
-		catch (SQLException e) 
-		{
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return acc;
-	}	
 	
 	//---------------------------------------------Application Form
 		public void writeSessionalData(SessionalStaff rest) {
@@ -184,6 +179,20 @@ public class DbHandler {
 		    }
 		}
 		
+		//---------------------------------------------SAVE CURRENT ADMIN
+			public void saveCurrentAdmin(int id) {
+			    try {
+			    	String query = "INSERT INTO currentAdmin (ps_id) VALUES (?)";
+			        PreparedStatement stm = con.prepareStatement(query);
+			        stm.setInt(1, id);
+			        stm.executeUpdate();
+			        System.out.println("Current Admin Successfully inserted");
+			    } catch (SQLException e) {
+			        System.out.println("Error in Current Admin insertion");
+			        e.printStackTrace();
+			    }
+			}
+		
 		public void deleteInterested(int id) {
 		    try {
 		    	String query = "DELETE FROM Interested WHERE id = ?";
@@ -196,6 +205,47 @@ public class DbHandler {
 		        e.printStackTrace();
 		    }
 		}
+		
+		//---------------------------------------------read
+
+		public int readCurrentAdmin() 
+		{
+			int id = 0;
+			Statement stm;
+			try {
+				stm = con.createStatement();
+				String query = "SELECT ps_id FROM CurrentAdmin";
+				ResultSet rs = stm.executeQuery(query);
+				while(rs.next()) {
+				id = rs.getInt(1);
+				System.out.println("rs.getInt(1) : "+rs.getInt(1));
+				}
+			}
+			catch (SQLException e) 
+			{
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return id;
+		}
+		
+		//---------------------------------------------LOGOUT
+
+		public void logout(int id) 
+		{
+			try {
+		    	String query = "DELETE FROM currentAdmin WHERE ps_id = ?";
+		        PreparedStatement stm = con.prepareStatement(query);
+		        stm.setInt(1, id);
+		        stm.executeUpdate();
+		        System.out.println("Logged out Successfully");
+		    } catch (SQLException e) {
+		        System.out.println("Error in logging out");
+		        e.printStackTrace();
+		    }
+		}
+		
+		
 	
 	
 }

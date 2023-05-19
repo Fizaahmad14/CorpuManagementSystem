@@ -10,7 +10,6 @@ import javafx.scene.control.*;
 
 public class adminLoginController {
 	
-	
 	PermanentStaff ps = new PermanentStaff();
 	DbHandler db = new DbHandler();
 	
@@ -37,6 +36,8 @@ public class adminLoginController {
 				if(ps.get(i).getEmail().equals(adminEmail.getText()) && ps.get(i).getPass().equals(adminPassword.getText()))
 				{
 					checkUsername = true;
+					int id = ps.get(i).getId();
+					db.saveCurrentAdmin(id);
 				}
     		}
     	if(checkUsername == false)

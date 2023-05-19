@@ -61,12 +61,15 @@ public class viewInterestedPeopleController implements Initializable{
     @FXML
     void goToHome(ActionEvent event) throws IOException {
     	Main m = new Main();
-		m.changeScene("AdminPortal.fxml");
+		m.changeScene("adminPortal.fxml");
     }
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
+    	
+    	int id = ps.currentAdmin();
+    	
 		
-    	ArrayList<InterestedPeopl> attList = ps.loadUsersApplied();
+    	ArrayList<InterestedPeopl> attList = ps.loadUsersApplied(id);
     	
 		ObservableList<InterestedPeopl> data = FXCollections.observableArrayList(attList);
 		

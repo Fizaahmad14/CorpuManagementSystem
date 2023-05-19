@@ -69,9 +69,6 @@ public class applicationFormController {
     	String selectedTime = timeSlot.getValue();
     	intr.setAvailablilityList(selectedTime);
     	System.out.println("User Selected TimeSlot: "+selectedTime);
-//    	Availability availability = new Availability();
-//    	availability = availability.parseAvailabilityString(selectedTime);
-    			
     }
 
 }
