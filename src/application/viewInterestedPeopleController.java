@@ -16,11 +16,19 @@ import javafx.scene.control.cell.PropertyValueFactory;
 
 public class viewInterestedPeopleController implements Initializable{
 	PermanentStaff ps = new PermanentStaff();
+	
+	private String selectedPreference = null;
 	@FXML
     private Button HireButton;
 	
 	@FXML
     private Button GoBackButton;
+	
+    @FXML
+    private ComboBox<String> search;
+
+    @FXML
+    private Label unit_name;
 
     @FXML
     private TableColumn<InterestedPeopl, String> peopleAppliedAvailability;
@@ -39,6 +47,13 @@ public class viewInterestedPeopleController implements Initializable{
     
     @FXML
     private TableView<InterestedPeopl> table;
+    
+    @FXML
+    public void initializeCombobox() {  	
+    	System.out.println("initializee");
+    	ArrayList<String> preferenceList = ps.loadPreferences();
+    	search.getItems().addAll(preferenceList);
+    }
 
     //This is the hire button and will prompt that the selected user has been successfully hired
     @FXML
@@ -63,14 +78,33 @@ public class viewInterestedPeopleController implements Initializable{
     	Main m = new Main();
 		m.changeScene("adminPortal.fxml");
     }
-    @Override
-    public void initialize(URL arg0, ResourceBundle arg1) {
+
+    @FXML
+    void searchPreference(ActionEvent event) throws IOException {
+    	this.selectedPreference = search.getValue();
+    	System.out.println("Admin Selected Preference: "+selectedPreference);
+    	updateTable();
+//    	Main m = new Main();
+//		m.changeScene("ViewInterestedPeople.fxml");
+    }
+    
+    public void updateTable()
+    {
+    	table.getItems().clear();
     	
     	int id = ps.currentAdmin();
     	
-		
-    	ArrayList<InterestedPeopl> attList = ps.loadUsersApplied(id);
+    	ArrayList<InterestedPeopl> attList = null;
     	
+    	if(selectedPreference == null)
+    	{
+    		attList = ps.loadUsersApplied(id);
+    	}
+    	else
+    	{
+    		attList = ps.showSpecificPreference(id,this.selectedPreference);
+    	}
+   	
 		ObservableList<InterestedPeopl> data = FXCollections.observableArrayList(attList);
 		
 		peopleAppliedID.setCellValueFactory(new PropertyValueFactory<InterestedPeopl,String>("id"));
@@ -84,7 +118,49 @@ public class viewInterestedPeopleController implements Initializable{
 		peopleAppliedAvailability.setCellValueFactory(new PropertyValueFactory<InterestedPeopl,String>("availablilityList"));
 		
 		table.setItems(data);
+    }
+    
+    @Override
+    public void initialize(URL arg0, ResourceBundle arg1) {
+    	
+    	initializeCombobox();
+    	String unitName = ps.currentUnit();
+    	unit_name.setText(unitName); 
+    	updateTable();
+    	//int id = ps.currentAdmin();
+//    	ArrayList<InterestedPeopl> attList = null;
+//    	
+//    	if(selectedPreference == null)
+//    	{
+//    		attList = ps.loadUsersApplied(id);
+//    	}
+//    	else
+//    	{
+//    		attList = ps.showSpecificPreference(id,this.selectedPreference);
+//    	}
+//   	
+//		ObservableList<InterestedPeopl> data = FXCollections.observableArrayList(attList);
+//		
+//		peopleAppliedID.setCellValueFactory(new PropertyValueFactory<InterestedPeopl,String>("id"));
+//		
+//		peopleAppliedName.setCellValueFactory(new PropertyValueFactory<InterestedPeopl,String>("name"));
+//		
+//		peopleAppliedEmail.setCellValueFactory(new PropertyValueFactory<InterestedPeopl,String>("email"));
+//
+//		peopleAppliedQualification.setCellValueFactory(new PropertyValueFactory<InterestedPeopl,String>("qualifications"));
+//		
+//		peopleAppliedAvailability.setCellValueFactory(new PropertyValueFactory<InterestedPeopl,String>("availablilityList"));
+//		
+//		table.setItems(data);
 
+	}
+
+	public String getSelectedPreference() {
+		return selectedPreference;
+	}
+
+	public void setSelectedPreference(String selectedPreference) {
+		this.selectedPreference = selectedPreference;
 	}
 
 }

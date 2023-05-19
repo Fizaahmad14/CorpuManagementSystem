@@ -15,7 +15,7 @@ public class DbHandler {
 		// TODO Auto-generated constructor stub
 		try {
 			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/corpu",username,password);
-			System.out.println("Connection Successfull\n");
+			//System.out.println("Connection Successfull\n");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			System.out.println("Connection Failed\n");
@@ -155,7 +155,26 @@ public class DbHandler {
 	    }
 	    return acc;
 	}
-
+	//---------------------------------------------read
+	public String readCurrentUnit(int id) 
+	{
+		String name = null;
+		try {
+			String query = "SELECT unitName FROM PermanentStaff WHERE id = ?";
+			PreparedStatement stm = con.prepareStatement(query);
+	        stm.setInt(1, id);
+	        ResultSet rs = stm.executeQuery();
+			while(rs.next()) {
+			name = rs.getString(1);
+			}
+		}
+		catch (SQLException e) 
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return name;
+	}
 	
 	//---------------------------------------------Application Form
 		public void writeSessionalData(SessionalStaff rest) {
@@ -180,18 +199,18 @@ public class DbHandler {
 		}
 		
 		//---------------------------------------------SAVE CURRENT ADMIN
-			public void saveCurrentAdmin(int id) {
-			    try {
-			    	String query = "INSERT INTO currentAdmin (ps_id) VALUES (?)";
-			        PreparedStatement stm = con.prepareStatement(query);
-			        stm.setInt(1, id);
-			        stm.executeUpdate();
-			        System.out.println("Current Admin Successfully inserted");
-			    } catch (SQLException e) {
-			        System.out.println("Error in Current Admin insertion");
-			        e.printStackTrace();
-			    }
-			}
+		public void saveCurrentAdmin(int id) {
+		    try {
+		    	String query = "INSERT INTO currentAdmin (ps_id) VALUES (?)";
+		        PreparedStatement stm = con.prepareStatement(query);
+		        stm.setInt(1, id);
+		        stm.executeUpdate();
+		        System.out.println("Current Admin Successfully inserted");
+		    } catch (SQLException e) {
+		        System.out.println("Error in Current Admin insertion");
+		        e.printStackTrace();
+		    }
+		}
 		
 		public void deleteInterested(int id) {
 		    try {
@@ -206,8 +225,7 @@ public class DbHandler {
 		    }
 		}
 		
-		//---------------------------------------------read
-
+		//--------------------------------------------CURRENT ADMIN
 		public int readCurrentAdmin() 
 		{
 			int id = 0;
@@ -218,7 +236,6 @@ public class DbHandler {
 				ResultSet rs = stm.executeQuery(query);
 				while(rs.next()) {
 				id = rs.getInt(1);
-				System.out.println("rs.getInt(1) : "+rs.getInt(1));
 				}
 			}
 			catch (SQLException e) 
@@ -230,7 +247,6 @@ public class DbHandler {
 		}
 		
 		//---------------------------------------------LOGOUT
-
 		public void logout(int id) 
 		{
 			try {
@@ -243,6 +259,23 @@ public class DbHandler {
 		        System.out.println("Error in logging out");
 		        e.printStackTrace();
 		    }
+		}
+		public ArrayList<InterestedPeopl> readSpecificPreference(int id, String preference) {
+		    ArrayList<InterestedPeopl> acc = new ArrayList<InterestedPeopl>();
+		    try {
+		        String query = "SELECT i.* FROM Interested i JOIN PermanentStaff p ON i.unitName = p.unitName WHERE p.id = ? and i.preference = ?";
+		        PreparedStatement stm = con.prepareStatement(query);
+		        stm.setInt(1, id);
+		        stm.setString(2, preference);
+		        ResultSet rs = stm.executeQuery();
+		        while (rs.next()) {
+		            InterestedPeopl s = new InterestedPeopl(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8));
+		            acc.add(s);
+		        }
+		    } catch (SQLException e) {
+		        e.printStackTrace();
+		    }
+		    return acc;
 		}
 		
 		

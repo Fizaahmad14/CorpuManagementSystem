@@ -1,16 +1,15 @@
 package application;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
-import BusniessLogic.Controller;
-import DataBase.DbHandler;
+import BusniessLogic.PermanentStaff;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
 public class SelectUnitPageController {
-	Controller contr = new Controller();
-	DbHandler db = new DbHandler();
+	PermanentStaff ps = new PermanentStaff();
 	
 	@FXML
     private Button GoBackButton;
@@ -26,8 +25,10 @@ public class SelectUnitPageController {
     
     @FXML
     public void initialize() {
-    	unit.getItems().addAll("DLD", "AI", "CyberSecurity", "Algo","PDC", "Nummerical");
-    	preference.getItems().addAll("BSCS", "BSSE", "BSEE", "MSCS", "MSEE", "BSAI", "BSCYS", "MSCYS", "PhD");
+    	ArrayList<String> unitList = ps.loadUnits();
+    	ArrayList<String> preferenceList = ps.loadPreferences();
+    	unit.getItems().addAll(unitList);
+    	preference.getItems().addAll(preferenceList);
     }
 
     @FXML
@@ -45,7 +46,7 @@ public class SelectUnitPageController {
     
     @FXML
     void handlePreference(ActionEvent event) {
-    	String selectedPreference= preference.getValue();
+    	String selectedPreference = preference.getValue();
     	System.out.println("User Selected Preference: "+selectedPreference);
     }
 

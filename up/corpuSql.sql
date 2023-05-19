@@ -1,70 +1,79 @@
 use corpu;
-DROP TABLE IF EXISTS Admin;
-DROP TABLE IF EXISTS Admin_account;
-DROP TABLE IF EXISTS Unit;
-DROP TABLE IF EXISTS SessionalStaff;
+DROP TABLE IF EXISTS selectedPreference;
+DROP TABLE IF EXISTS currentAdmin;
+DROP TABLE IF EXISTS ps_account;
+DROP TABLE IF EXISTS PermanentStaff;
 DROP TABLE IF EXISTS Interested;
+DROP TABLE IF EXISTS SessionalStaff;
+DROP TABLE IF EXISTS Availability;
+DROP TABLE IF EXISTS preferences;
+DROP TABLE IF EXISTS Unit;
 
-CREATE TABLE Admin (
-    id INT PRIMARY KEY AUTO_INCREMENT,
-    name VARCHAR(100),
-    email VARCHAR(100),
-    password VARCHAR(50),
-    phone VARCHAR(20)
-);
 
-CREATE TABLE Admin_account (
-    id INT PRIMARY KEY AUTO_INCREMENT,
-    email VARCHAR(100),
-    password VARCHAR(50),
-    FOREIGN KEY (id) REFERENCES Admin(id)
-);
-
-CREATE TABLE SessionalStaff (
-    id INT PRIMARY KEY AUTO_INCREMENT,
-    name VARCHAR(100),
-    email VARCHAR(100)
-);
 
 CREATE TABLE Availability(
 	timeSlots varchar (50) Primary Key
 );
-
-CREATE TABLE Interested (
+CREATE TABLE Unit(
+    name varchar(30) primary key
+);
+CREATE TABLE selectedPreference(
+	
+    name varchar(30) primary key
+);
+CREATE TABLE currentAdmin(
+	id INT PRIMARY KEY AUTO_INCREMENT,
+    ps_id INT,
+    FOREIGN KEY (ps_id) REFERENCES ps_account(id)
+);
+CREATE TABLE Preferences(
+    name varchar(30) primary key
+);
+CREATE TABLE PermanentStaff (
     id INT PRIMARY KEY AUTO_INCREMENT,
     name VARCHAR(100),
     email VARCHAR(100),
+	phone VARCHAR(30),
     qualification varchar(10),
     timeslot varchar(30),
     unitName varchar(30),
     preference varchar(30),
+    FOREIGN KEY (preference) REFERENCES preferences(name),
     FOREIGN KEY (unitName) REFERENCES Unit(name),
     FOREIGN KEY (timeslot) REFERENCES Availability(timeSlots)
 );
-
-CREATE TABLE Unit(
-    name varchar(30) primary key
+CREATE TABLE ps_account (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    email VARCHAR(100),
+    password VARCHAR(50),
+    FOREIGN KEY (id) REFERENCES PermanentStaff(id)
 );
-
-INSERT INTO Admin (name, email, password, phone)
-VALUES
-    ('John Doe', 'johndoe@example.com', 'mypassword', '1234567890'),
-    ('Jane Smith', 'janesmith@example.com', 'anotherpassword', '9876543210'),
-    ('David Johnson', 'davidjohnson@example.com', 'secretpassword', '5555555555'),
-    ('Sarah Williams', 'sarahwilliams@example.com', 'password123', '1111111111'),
-    ('Michael Brown', 'michaelbrown@example.com', 'adminpassword', '9999999999'),
-    ('Emily Davis', 'emilydavis@example.com', 'mypassword123', '7777777777'),
-    ('Robert Wilson', 'robertwilson@example.com', 'pass123word', '8888888888');
-
-INSERT INTO Admin_account (email, password)
-VALUES
-    ('johndoe@example.com', 'mypassword'),
-    ('janesmith@example.com', 'anotherpassword'),
-    ('davidjohnson@example.com', 'secretpassword'),
-    ('sarahwilliams@example.com', 'password123'),
-    ('michaelbrown@example.com', 'adminpassword'),
-    ('emilydavis@example.com', 'mypassword123'),
-    ('robertwilson@example.com', 'pass123word');
+CREATE TABLE Interested (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(100),
+    email VARCHAR(100),
+    phone VARCHAR(30),
+    qualification varchar(10),
+    timeslot varchar(30),
+    unitName varchar(30),
+    preference varchar(30),
+    FOREIGN KEY (preference) REFERENCES preferences(name),
+    FOREIGN KEY (unitName) REFERENCES Unit(name),
+    FOREIGN KEY (timeslot) REFERENCES Availability(timeSlots)
+);
+CREATE TABLE SessionalStaff (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(100),
+    email VARCHAR(100),
+	phone VARCHAR(30),
+    qualification varchar(10),
+    timeslot varchar(30),
+    unitName varchar(30),
+    preference varchar(30),
+    FOREIGN KEY (preference) REFERENCES preferences(name),
+    FOREIGN KEY (unitName) REFERENCES Unit(name),
+    FOREIGN KEY (timeslot) REFERENCES Availability(timeSlots)
+);
 
 INSERT INTO Unit (name)
 VALUES
@@ -91,18 +100,106 @@ VALUES
     ('Tuesday (6:00PM - 11:00PM)'),
     ('Wednesday (6:00PM - 11:00PM)');
 
-INSERT INTO Interested (name, email, qualification, timeslot, unitName, preference)
+INSERT INTO Preferences (name)
 VALUES
-    ('John Doe', 'johndoe@example.com', 'B.Tech', 'Monday (10:00AM - 5:00PM)', 'Calculus', 'BSCS'),
-    ('Jane Smith', 'janesmith@example.com', 'M.Sc', 'Tuesday (10:00AM - 5:00PM)', 'Linear Algebra', 'BSSE'),
-    ('David Johnson', 'davidjohnson@example.com', 'Ph.D', 'Friday (10:00AM - 5:00PM)', 'AI', 'BSEE'),
-    ('Sarah Williams', 'sarahwilliams@example.com', 'B.A', 'Monday (6:00PM - 11:00PM)', 'CyberSecurity', 'MSCS');
+    ('BSCS'),
+    ('BSSE'),
+    ('BSEE'),
+    ('MSCS'),
+    ('MSEE'),
+    ('BSAI'),
+    ('BSCYS'),
+    ('MSCYS'),
+    ('PhD');
 
+INSERT INTO PermanentStaff (name, email, phone, qualification, timeslot, unitName, preference)
+VALUES
+    ('John Doe', 'johndoe@example.com', '1234567890', 'BSCS', 'Monday (10:00AM - 5:00PM)', 'Calculus', 'BSEE'),
+    ('Jane Smith', 'janesmith@example.com', '9876543210', 'MSEE', 'Wednesday (6:00PM - 11:00PM)', 'AI', 'BSCS'),
+    ('Alice Johnson', 'alicejohnson@example.com', '4567890123', 'BSSE', 'Friday (10:00AM - 5:00PM)', 'Linear Algebra', 'MSCS'),
+    ('Bob Anderson', 'bobanderson@example.com', '7890123456', 'PhD', 'Tuesday (10:00AM - 5:00PM)', 'CyberSecurity', 'BSEE'),
+    ('Sarah Williams', 'sarahwilliams@example.com', '0123456789', 'BSCYS', 'Saturday (10:00AM - 5:00PM)', 'Algo', 'MSCYS'),
+    ('Michael Brown', 'michaelbrown@example.com', '2345678901', 'BSAI', 'Monday (6:00PM - 11:00PM)', 'DLD', 'BSSE'),
+    ('Emily Davis', 'emilydavis@example.com', '5678901234', 'BSEE', 'Sunday (10:00AM - 5:00PM)', 'SE', 'BSCS'),
+    ('David Taylor', 'davidtaylor@example.com', '8901234567', 'MSCYS', 'Wednesday (10:00AM - 5:00PM)', 'PDC', 'PhD'),
+    ('Olivia Moore', 'oliviamoore@example.com', '9012345678', 'MSCS', 'Tuesday (6:00PM - 11:00PM)', 'Nummerical', 'BSAI'),
+    ('Daniel Lee', 'daniellee@example.com', '3456789012', 'BSSE', 'Thursday (10:00AM - 5:00PM)', 'AI', 'MSEE');
 
+INSERT INTO ps_account (email, password)
+VALUES
+    ('johndoe@example.com', 'password123'),
+    ('janesmith@example.com', 'password456'),
+    ('alicejohnson@example.com', 'password789'),
+    ('bobanderson@example.com', 'passwordabc'),
+    ('sarahwilliams@example.com', 'passworddef'),
+    ('michaelbrown@example.com', 'passwordghi'),
+    ('emilydavis@example.com', 'passwordjkl'),
+    ('davidtaylor@example.com', 'passwordmno'),
+    ('oliviamoore@example.com', 'passwordpqr'),
+    ('daniellee@example.com', 'passwordstu');
+    
+SELECT PermanentStaff.name FROM PermanentStaff JOIN ps_account on PermanentStaff.id = ps_account.id where ps_account.id = 5;
 
+INSERT INTO Interested (name, email, phone, qualification, timeslot, unitName, preference)
+VALUES
+    ('John Smith', 'johnsmith@example.com', '1234567890', 'BSCS', 'Monday (10:00AM - 5:00PM)', 'Calculus', 'BSEE'),
+    ('Emily Johnson', 'emilyjohnson@example.com', '9876543210', 'BSSE', 'Wednesday (6:00PM - 11:00PM)', 'AI', 'BSCS'),
+    ('Michael Davis', 'michaeldavis@example.com', '4567890123', 'BSEE', 'Friday (10:00AM - 5:00PM)', 'Linear Algebra', 'MSCS'),
+    ('Sarah Anderson', 'sarahanderson@example.com', '7890123456', 'MSCS', 'Tuesday (10:00AM - 5:00PM)', 'CyberSecurity', 'BSEE'),
+    ('David Williams', 'davidwilliams@example.com', '0123456789', 'BSSE', 'Saturday (10:00AM - 5:00PM)', 'Algo', 'MSCYS'),
+    ('Olivia Brown', 'oliviabrown@example.com', '2345678901', 'BSAI', 'Monday (6:00PM - 11:00PM)', 'DLD', 'BSSE'),
+    ('Daniel Johnson', 'danieljohnson@example.com', '5678901234', 'BSEE', 'Sunday (10:00AM - 5:00PM)', 'SE', 'BSCS'),
+    ('Emma Taylor', 'emmataylor@example.com', '8901234567', 'MSCYS', 'Wednesday (10:00AM - 5:00PM)', 'PDC', 'PhD'),
+    ('Liam Moore', 'liammoore@example.com', '9012345678', 'MSCS', 'Tuesday (6:00PM - 11:00PM)', 'Nummerical', 'BSAI'),
+    ('Sophia Lee', 'sophialee@example.com', '3456789012', 'BSSE', 'Thursday (10:00AM - 5:00PM)', 'AI', 'MSEE'),
+    ('Sophie Turner', 'sophieturner@example.com', '7890123456', 'BSEE', 'Monday (10:00AM - 5:00PM)', 'CyberSecurity', 'BSCS'),
+    ('William Johnson', 'williamjohnson@example.com', '2345678901', 'BSSE', 'Wednesday (6:00PM - 11:00PM)', 'DLD', 'MSCS'),
+    ('Lily Thompson', 'lilythompson@example.com', '9012345678', 'MSCS', 'Friday (10:00AM - 5:00PM)', 'Algo', 'BSEE'),
+    ('Oliver Davis', 'oliverdavis@example.com', '5678901234', 'BSCS', 'Tuesday (10:00AM - 5:00PM)', 'Linear Algebra', 'BSEE'),
+    ('Emily Wilson', 'emilywilson@example.com', '0123456789', 'BSCYS', 'Saturday (10:00AM - 5:00PM)', 'AI', 'MSCYS'),
+    ('Noah Brown', 'noahbrown@example.com', '2345678901', 'BSAI', 'Monday (6:00PM - 11:00PM)', 'Nummerical', 'BSSE'),
+    ('Ava Thompson', 'avathompson@example.com', '5678901234', 'MSCS', 'Sunday (10:00AM - 5:00PM)', 'SE', 'BSCS'),
+    ('Ethan Wilson', 'ethanwilson@example.com', '8901234567', 'BSEE', 'Wednesday (10:00AM - 5:00PM)', 'PDC', 'PhD'),
+    ('Charlotte Davis', 'charlottedavis@example.com', '9012345678', 'MSCYS', 'Tuesday (6:00PM - 11:00PM)', 'Nummerical', 'BSAI'),
+    ('James Thompson', 'jamesthompson@example.com', '3456789012', 'BSSE', 'Thursday (10:00AM - 5:00PM)', 'AI', 'MSEE'),
+    ('Emma Johnson', 'emmajohnson@example.com', '1234567890', 'BSCS', 'Monday (10:00AM - 5:00PM)', 'Calculus', 'BSEE'),
+    ('Elijah Smith', 'elijahsmith@example.com', '9876543210', 'BSSE', 'Wednesday (6:00PM - 11:00PM)', 'AI', 'BSCS'),
+    ('Grace Anderson', 'graceanderson@example.com', '4567890123', 'BSEE', 'Friday (10:00AM - 5:00PM)', 'Linear Algebra', 'MSCS'),
+    ('Carter Williams', 'carterwilliams@example.com', '7890123456', 'MSCS', 'Tuesday (10:00AM - 5:00PM)', 'CyberSecurity', 'BSEE'),
+    ('Victoria Davis', 'victoriadavis@example.com', '0123456789', 'BSSE', 'Saturday (10:00AM - 5:00PM)', 'Algo', 'MSCYS'),
+    ('Henry Johnson', 'henryjohnson@example.com', '2345678901', 'BSAI', 'Monday (6:00PM - 11:00PM)', 'DLD', 'BSSE'),
+    ('Penelope Wilson', 'penelopewilson@example.com', '5678901234', 'BSEE', 'Sunday (10:00AM - 5:00PM)', 'SE', 'BSCS'),
+    ('Leo Taylor', 'leotaylor@example.com', '8901234567', 'MSCYS', 'Wednesday (10:00AM - 5:00PM)', 'PDC', 'PhD'),
+    ('Mila Moore', 'milamoore@example.com', '9012345678', 'MSCS', 'Tuesday (6:00PM - 11:00PM)', 'Nummerical', 'BSAI'),
+    ('Sebastian Lee', 'sebastianlee@example.com', '3456789012', 'BSSE', 'Thursday (10:00AM - 5:00PM)', 'AI', 'MSEE'),
+    ('Liam Johnson', 'liamjohnson@example.com', '1234567890', 'BSCS', 'Monday (10:00AM - 5:00PM)', 'Calculus', 'BSEE'),
+    ('Sophia Smith', 'sophiasmith@example.com', '9876543210', 'BSSE', 'Wednesday (6:00PM - 11:00PM)', 'AI', 'BSCS'),
+    ('Jackson Anderson', 'jacksonanderson@example.com', '4567890123', 'BSEE', 'Friday (10:00AM - 5:00PM)', 'Linear Algebra', 'MSCS'),
+    ('Ava Williams', 'avawilliams@example.com', '7890123456', 'MSCS', 'Tuesday (10:00AM - 5:00PM)', 'CyberSecurity', 'BSEE'),
+    ('Oliver Davis', 'oliverdavis@example.com', '0123456789', 'BSSE', 'Saturday (10:00AM - 5:00PM)', 'Algo', 'MSCYS'),
+    ('Emma Brown', 'emmabrown@example.com', '2345678901', 'BSAI', 'Monday (6:00PM - 11:00PM)', 'DLD', 'BSSE'),
+    ('Ethan Johnson', 'ethanjohnson@example.com', '5678901234', 'BSEE', 'Sunday (10:00AM - 5:00PM)', 'SE', 'BSCS'),
+    ('Mia Taylor', 'miataylor@example.com', '8901234567', 'MSCYS', 'Wednesday (10:00AM - 5:00PM)', 'PDC', 'PhD'),
+    ('Noah Moore', 'noahmoore@example.com', '9012345678', 'MSCS', 'Tuesday (6:00PM - 11:00PM)', 'Nummerical', 'BSAI'),
+    ('Isabella Lee', 'isabellalee@example.com', '3456789012', 'BSSE', 'Thursday (10:00AM - 5:00PM)', 'AI', 'MSEE');
+    
 
-SELECT * FROM Admin;
-SELECT * FROM Admin_account;
-SELECT * FROM Unit;
+-- DELETE FROM Interested where id>0;    
+-- ALTER TABLE Interested AUTO_INCREMENT = 1;
+
+-- DELETE FROM SessionalStaff where id>0;    
+-- ALTER TABLE SessionalStaff AUTO_INCREMENT = 1;
+
+SELECT ps_account.id, ps_account.email, ps_account.password FROM ps_account join currentAdmin on ps_account.id = currentAdmin.id; 
+SELECT name FROM Unit;
+SELECT i.* FROM Interested i JOIN PermanentStaff p ON i.unitName = p.unitName WHERE p.id = 5;
+
+select * from selectedPreference;
+select * from currentAdmin;
+SELECT * FROM ps_account;    
+SELECT * FROM PermanentStaff;
 SELECT * FROM Interested;
--- delete from Interested where id>=5
+SELECT * FROM SessionalStaff;
+SELECT * FROM Unit;
+SELECT * FROM Availability;
+SELECT i.* FROM Interested i JOIN PermanentStaff p ON i.unitName = p.unitName WHERE p.id = 1 and i.preference = "BSEE";

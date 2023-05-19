@@ -17,6 +17,11 @@ public class Unit {
         this.name = null;
 	}
 
+	public Unit(String unit) {
+		// TODO Auto-generated constructor stub
+		this.name  = unit;
+	}
+
 	public int getId() {
         return id;
     }

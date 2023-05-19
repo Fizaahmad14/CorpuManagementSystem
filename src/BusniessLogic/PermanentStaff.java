@@ -60,6 +60,12 @@ public class PermanentStaff extends User {
     	return id;
     }
     
+    public String currentUnit()
+    {
+    	String unit = db.readCurrentUnit(db.readCurrentAdmin());
+    	return unit;
+    }
+    
     public void logout(int id)
     {
     	db.logout(id);
@@ -76,6 +82,11 @@ public class PermanentStaff extends User {
 
 	public ArrayList<InterestedPeopl> loadUsersApplied(int id){
 		ArrayList<InterestedPeopl> pplList = db.readUsersApplied(id);
+		return pplList;
+	}
+	
+	public ArrayList<InterestedPeopl> showSpecificPreference(int id, String preference){
+		ArrayList<InterestedPeopl> pplList = db.readSpecificPreference(id, preference);
 		return pplList;
 	}
 

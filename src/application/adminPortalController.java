@@ -22,7 +22,6 @@ public class adminPortalController {
     	Main m = new Main();
     	m.changeScene("HomePage.fxml");
     }
-
     @FXML
     void InterestedPeoplePage(ActionEvent event) throws IOException {
     	Main m = new Main();

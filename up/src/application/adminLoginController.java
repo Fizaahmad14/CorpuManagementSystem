@@ -1,9 +1,8 @@
 package application;
 import DataBase.DbHandler;
-
 import java.io.IOException;
 import java.util.ArrayList;
-import BusniessLogic.Controller;
+import BusniessLogic.PermanentStaff;
 import BusniessLogic.psAccount;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -11,8 +10,7 @@ import javafx.scene.control.*;
 
 public class adminLoginController {
 	
-	
-	Controller contr = new Controller();
+	PermanentStaff ps = new PermanentStaff();
 	DbHandler db = new DbHandler();
 	
 	@FXML
@@ -38,6 +36,8 @@ public class adminLoginController {
 				if(ps.get(i).getEmail().equals(adminEmail.getText()) && ps.get(i).getPass().equals(adminPassword.getText()))
 				{
 					checkUsername = true;
+					int id = ps.get(i).getId();
+					db.saveCurrentAdmin(id);
 				}
     		}
     	if(checkUsername == false)
